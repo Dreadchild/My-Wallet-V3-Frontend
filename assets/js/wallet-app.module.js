@@ -1,10 +1,9 @@
-'use strict';
-
 let debugLog = [];
 let log = console.log.bind(console);
 console.log = (...args) => { debugLog.push(args); log(...args); };
 console.replay = () => debugLog.forEach(l => log(...l));
 
+/* eslint-disable angular/window-service */
 if (browserDetection().browser === 'ie' && browserDetection().version < 11) {
   if (confirm("Your browser is out of date! It looks like you're using an old version of Internet Explorer. For the best Blockchain experience, please update your browser or hit cancel to return to our homepage.")) {
     window.location = 'http://browsehappy.com/';
@@ -12,6 +11,7 @@ if (browserDetection().browser === 'ie' && browserDetection().version < 11) {
     window.location = 'https://blockchain.info/';
   }
 }
+/* eslint-enable angular/window-service */
 
 const modules = [
   'ngAnimate',
@@ -76,14 +76,6 @@ angular.module('walletApp', modules)
     }]
   });
 })
-.constant('whatsNew', [
-  { title: 'BUY_BITCOIN', desc: 'BUY_BITCOIN_EXPLAIN', date: new Date('12/15/2016'), ref: 'wallet.common.buy-sell' },
-  { title: 'EXPORT_HISTORY', desc: 'EXPORT_HISTORY_EXPLAIN', date: 1466521300000 },
-  { title: 'WHATS_NEW', desc: 'WHATS_NEW_EXPLAIN', date: 1463716800000 },
-  { title: 'SIGN_VERIFY', desc: 'SIGN_VERIFY_EXPLAIN', date: 1462161600000 },
-  { title: 'TRANSFER_ALL', desc: 'TRANSFER_ALL_EXPLAIN', date: 1461556800000 },
-  { title: 'DEV_THEMES', desc: 'DEV_THEMES_EXPLAIN', date: 1474862400000 }
-])
 .run(($rootScope, $window, $uibModal, $state, $q, $timeout, $location, languages) => {
   $rootScope.$safeApply = (scope = $rootScope, before) => {
     before = before;

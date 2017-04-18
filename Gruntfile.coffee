@@ -54,7 +54,7 @@ module.exports = (grunt) ->
 
       js:
         expand: true
-        src: ['build/js/app.js']
+        src: ['build/js/wallet-app.module.js']
         dest: ''
 
     concat:
@@ -79,7 +79,8 @@ module.exports = (grunt) ->
           "build/js/sharedDirectives/video-container.directive.js"
           "build/js/sharedDirectives/scroll-in-view.directive.js"
           "build/js/translations.js"
-          "build/js/app.js"
+          "build/js/wallet-app.module.js"
+          "build/js/whats-new.constant.js"
           'build/js/landingCtrl.js'
           'build/js/routes.js'
           "build/js/services/bcTranslationLoader.service.js"
@@ -456,7 +457,7 @@ module.exports = (grunt) ->
 
     replace:
       root_url:
-        src: ['build/js/app.js'],
+        src: ['build/js/wallet-app.module.js'],
         overwrite: true,
         replacements: [{
           from: 'customRootURL = $rootScope.rootURL'
@@ -505,7 +506,7 @@ module.exports = (grunt) ->
           to: () => "network = '" + @network + "'"
         }]
       version_frontend:
-        src: ['build/js/app.js'],
+        src: ['build/js/wallet-app.module.js'],
         overwrite: true,
         replacements: [{
           from: 'versionFrontend = null'
@@ -513,7 +514,7 @@ module.exports = (grunt) ->
             "versionFrontend = '" + @versionFrontend + "'"
         }]
       version_my_wallet:
-        src: ['build/js/app.js'],
+        src: ['build/js/wallet-app.module.js'],
         overwrite: true,
         replacements: [{
           from: 'versionMyWallet = null'
